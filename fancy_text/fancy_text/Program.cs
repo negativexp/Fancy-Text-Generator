@@ -71,7 +71,7 @@ namespace fancy_text
         {
             Console.Clear();
             Console.SetCursorPosition(0, 0);
-            int menuWidth = 100;
+            int menuWidth = 80;
             int optionSelector = 0;
             string introTitle = "Fancy Text Generator";
             string introAuthor = "Made by newoutsider <3";
@@ -89,25 +89,27 @@ namespace fancy_text
             CenterText(introTitle);
             CenterText(introAuthor);
             Console.SetCursorPosition(0, 3);
-            CenterText("!".PadRight(menuWidth - 2, '-') + "!");
-            CenterText("Welcome!");
-            CenterText("!".PadRight(menuWidth - 2, '-') + "!");
+            CreateCenterLine(menuWidth);
+            CreateCenterText(menuWidth, "Welcome!");
+            CreateCenterLine(menuWidth);
 
             while (true)
             {
                 Console.SetCursorPosition(0, 6);
+                CreateSpace(menuWidth);
                 for (int i = 0; i < Options.Length; i++)
                 {
                     if (i == optionSelector)
                     {
-                        CenterText("!".PadRight((menuWidth / 10), ' ') + "[*] " + Options[i].PadRight((menuWidth / 10) * 9 - 6, ' ') + "!");
+                        CreateCenterFarLeftText(menuWidth, "[*] " + Options[i]);
                     }
                     else
                     {
-                        CenterText("!".PadRight((menuWidth / 10), ' ') + "[ ] " + Options[i].PadRight((menuWidth / 10) * 9 - 6, ' ') + "!");
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i]);
                     }
                 }
-                CenterText("!".PadRight(menuWidth - 2, '-') + "!");
+                CreateSpace(menuWidth);
+                CreateCenterLine(menuWidth);
 
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
@@ -123,9 +125,32 @@ namespace fancy_text
             }
         }
 
-        static int GetCenterPos(string text)
+        static void CreateCenterLine(int width)
         {
-            return (Console.WindowWidth - text.Length) / 2;
+            CenterText("!"+new string('-', width)+"!");
+        }
+        static void CreateCenterText(int width, string text)
+        {
+            width = (width - text.Length) / 2;
+            if(width % 2 == 0)
+            {
+                CenterText("!" + "".PadRight(width, ' ') + text + "".PadRight(width, ' ') + "!");
+            }
+            else
+            {
+                CenterText("!" + "".PadRight(width, ' ') + text + "".PadRight(width + 1, ' ') + "!");
+            }
+        }
+        static void CreateCenterFarLeftText(int width, string text)
+        {
+            int leftOffset = 8;
+            int remaningSpace = width - leftOffset - text.Length;
+
+            CenterText("!" + "".PadRight(leftOffset, ' ') + text + "".PadRight(remaningSpace, ' ') + "!");
+        }
+        static void CreateSpace(int width)
+        {
+            CenterText("!" + new string(' ', width) + "!");
         }
 
         static void CenterText(string text)
@@ -133,10 +158,9 @@ namespace fancy_text
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (text.Length / 2)) + "}", text));
         }
 
-        static void CenterTextOnLine(string text)
+        static int GetCenterPos(string text)
         {
-            Console.Write(String.Format("{0," + ((Console.WindowWidth / 2) + (text.Length / 2)) + "}", text));
+            return (Console.WindowWidth - text.Length) / 2;
         }
-
     }
 }
