@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Net.Security;
+using System.Threading;
 
 namespace fancy_text
 {
@@ -13,6 +14,7 @@ namespace fancy_text
 
         static void PlayIntro()
         {
+            Console.Clear();
             int letterDelay = 10;
             int textDelay = 250;
             string introTitle = "Fancy Text Generator";
@@ -78,11 +80,10 @@ namespace fancy_text
 
             string[] Options =
             {
-                    "Change Colors",
+                    "Change Color scheme",
                     "Change Direction",
                     "Change Delays",
                     "Change Background",
-                    "Go back to the note",
                     "Exit"
             };
 
@@ -90,7 +91,7 @@ namespace fancy_text
             CenterText(introAuthor);
             Console.SetCursorPosition(0, 3);
             CreateCenterLine(menuWidth);
-            CreateCenterText(menuWidth, "Welcome!");
+            CreateCenterText(menuWidth, "Main Menu");
             CreateCenterLine(menuWidth);
 
             while (true)
@@ -99,9 +100,13 @@ namespace fancy_text
                 CreateSpace(menuWidth);
                 for (int i = 0; i < Options.Length; i++)
                 {
+                    if (i == Options.Length - 1)
+                    {
+                        CreateSpace(menuWidth);
+                    }
                     if (i == optionSelector)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[*] " + Options[i]);
+                        CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i]);
                     }
                     else
                     {
@@ -122,9 +127,45 @@ namespace fancy_text
                 {
                     optionSelector++;
                 }
+                if(pressedKey.Key == ConsoleKey.Enter)
+                {
+                    if(optionSelector == Options.Length - 5)
+                    {
+                        Console.WriteLine("change color scheme");
+                        Console.ReadKey();
+                    }
+                    if(optionSelector == Options.Length - 4)
+                    {
+                        Console.WriteLine("change diraction");
+                        Console.ReadKey();
+                    }
+                    if(optionSelector == Options.Length - 3)
+                    {
+                        Console.WriteLine("change delays");
+                        Console.ReadKey();
+                    }
+                    if(optionSelector == Options.Length - 2)
+                    {
+                        Console.WriteLine("change background");
+                        Console.ReadKey();
+                    }
+                    if (optionSelector == Options.Length - 1)
+                    {
+                        Exit();
+                    }
+                }
             }
         }
+        //menus
+        static void Exit()
+        {
+            CenterText("Ludvík's soundcloud: https://soundcloud.com/plastic_heart03");
+            CenterText("My github: https://github.com/negativexp");
+            Thread.Sleep(3000);
+            Environment.Exit(0);
+        }
 
+        //text
         static void CreateCenterLine(int width)
         {
             CenterText("!"+new string('-', width)+"!");
@@ -152,12 +193,10 @@ namespace fancy_text
         {
             CenterText("!" + new string(' ', width) + "!");
         }
-
         static void CenterText(string text)
         {
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (text.Length / 2)) + "}", text));
         }
-
         static int GetCenterPos(string text)
         {
             return (Console.WindowWidth - text.Length) / 2;
