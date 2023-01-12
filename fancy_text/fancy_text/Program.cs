@@ -5,6 +5,8 @@ namespace fancy_text
 {
     class Program
     {
+        static int menuWidth = 80;
+
         static void Main(string[] args)
         {
             Console.Title = "FTG - by newoutsider <3";
@@ -73,7 +75,6 @@ namespace fancy_text
         {
             Console.Clear();
             Console.SetCursorPosition(0, 0);
-            int menuWidth = 80;
             int optionSelector = 0;
             string introTitle = "Fancy Text Generator";
             string introAuthor = "Made by newoutsider <3";
@@ -106,11 +107,11 @@ namespace fancy_text
                     }
                     if (i == optionSelector)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i]);
+                        CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i], 8);
                     }
                     else
                     {
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i]);
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i], 8);
                     }
                 }
                 CreateSpace(menuWidth);
@@ -131,8 +132,7 @@ namespace fancy_text
                 {
                     if(optionSelector == Options.Length - 5)
                     {
-                        Console.WriteLine("change color scheme");
-                        Console.ReadKey();
+                        ChangeColorScheme();
                     }
                     if(optionSelector == Options.Length - 4)
                     {
@@ -157,6 +157,50 @@ namespace fancy_text
             }
         }
         //menus
+        static void ChangeColorScheme()
+        {
+            string[] options = { "One color", "Deafult color", "Color", "Multi color", "color#1", "add" };
+            int optionSelector = 0;
+
+            while (true)
+            {
+                Console.SetCursorPosition(0, 3);
+                CreateCenterLine(menuWidth);
+                CreateCenterText(menuWidth, "color scheme");
+                CreateCenterLine(menuWidth);
+                CreateSpace(menuWidth);
+
+                for(int i = 0; i < options.Length; i++)
+                {
+                    if(i % 3 == 0)
+                    {
+                        if (i == optionSelector)
+                        {
+                            CreateCenterFarLeftText(80, "[*] "+options[i], 8);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(80, "[ ] " + options[i], 8);
+                        }
+                    }
+                    else
+                    {
+                        if (i == optionSelector)
+                        {
+                            CreateCenterFarLeftText(80, "[*] " + options[i], 12);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(80, "[ ] " + options[i], 12);
+                        }
+                    }
+                }
+                CreateSpace(menuWidth);
+                CreateCenterFarLeftText(80, "[ ] Exit", 8);
+
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+            }
+        }
         static void Exit()
         {
             CenterText("Ludvík's soundcloud: https://soundcloud.com/plastic_heart03");
@@ -182,9 +226,9 @@ namespace fancy_text
                 CenterText("!" + "".PadRight(width, ' ') + text + "".PadRight(width + 1, ' ') + "!");
             }
         }
-        static void CreateCenterFarLeftText(int width, string text)
+        static void CreateCenterFarLeftText(int width, string text, int padding)
         {
-            int leftOffset = 8;
+            int leftOffset = padding;
             int remaningSpace = width - leftOffset - text.Length;
 
             CenterText("!" + "".PadRight(leftOffset, ' ') + text + "".PadRight(remaningSpace, ' ') + "!");
