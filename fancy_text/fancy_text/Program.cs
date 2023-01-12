@@ -7,6 +7,8 @@ namespace fancy_text
     {
         static int menuWidth = 80;
 
+        static bool OneColor = false;
+
         static void Main(string[] args)
         {
             Console.Title = "FTG - by newoutsider <3";
@@ -115,6 +117,8 @@ namespace fancy_text
                     }
                 }
                 CreateSpace(menuWidth);
+                CreateSpace(menuWidth);
+                CreateSpace(menuWidth);
                 CreateCenterLine(menuWidth);
 
 
@@ -159,7 +163,7 @@ namespace fancy_text
         //menus
         static void ChangeColorScheme()
         {
-            string[] options = { "One color", "Deafult color", "Color", "Multi color", "color#1", "add" };
+            string[] options = { "One Color", "Deafult Color", "Color", "Multi Color", "Color #1", "Add", "Back" };
             int optionSelector = 0;
 
             while (true)
@@ -172,33 +176,114 @@ namespace fancy_text
 
                 for(int i = 0; i < options.Length; i++)
                 {
-                    if(i % 3 == 0)
+                    if(i != options.Length - 1)
                     {
-                        if (i == optionSelector)
+                        if (i == 0 || i == 3)
                         {
-                            CreateCenterFarLeftText(80, "[*] "+options[i], 8);
+                            if(i == 0)
+                            {
+                                if(OneColor)
+                                {
+                                    if(i == optionSelector)
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[*] "+options[i] + " - SELECTED", 8);
+                                    }
+                                    else
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + " - SELECTED", 8);
+                                    }    
+                                }
+                                else
+                                {
+                                    if (i == optionSelector)
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                    }
+                                    else
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
+                                    }
+                                }
+                            }
+                            if (i == 3)
+                            {
+                                if (!OneColor)
+                                {
+                                    if (i == optionSelector)
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                                    }
+                                    else
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + " - SELECTED", 8);
+                                    }
+                                }
+                                else
+                                {
+                                    if (i == optionSelector)
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                    }
+                                    else
+                                    {
+                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            CreateCenterFarLeftText(80, "[ ] " + options[i], 8);
+                            if (i == optionSelector)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 12);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 12);
+                            }
                         }
                     }
                     else
                     {
+                        CreateSpace(menuWidth);
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(80, "[*] " + options[i], 12);
+                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
                         }
                         else
                         {
-                            CreateCenterFarLeftText(80, "[ ] " + options[i], 12);
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
                         }
                     }
                 }
                 CreateSpace(menuWidth);
-                CreateCenterFarLeftText(80, "[ ] Exit", 8);
+                CreateCenterLine(menuWidth);
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
+
+                if (pressedKey.Key == ConsoleKey.UpArrow && optionSelector != 0)
+                {
+                    optionSelector--;
+                }
+                if (pressedKey.Key == ConsoleKey.DownArrow && optionSelector != options.Length - 1)
+                {
+                    optionSelector++;
+                }
+                if(pressedKey.Key == ConsoleKey.Enter)
+                {
+                    if (optionSelector == options.Length - 1)
+                    {
+                        break;
+                    }
+                    if(optionSelector == 0)
+                    {
+                        OneColor = true;
+                    }
+                    if(optionSelector == 3)
+                    {
+                        OneColor = false;
+                    }
+                }
             }
         }
         static void Exit()
