@@ -73,7 +73,7 @@ namespace fancy_text
 
             Console.ReadKey();
         }
-
+        //menus
         static void DisplayMenu()
         {
             Console.Clear();
@@ -93,14 +93,13 @@ namespace fancy_text
 
             CenterText(introTitle);
             CenterText(introAuthor);
-            Console.SetCursorPosition(0, 3);
-            CreateCenterLine(menuWidth);
-            CreateCenterText(menuWidth, "Main Menu");
-            CreateCenterLine(menuWidth);
 
             while (true)
             {
-                Console.SetCursorPosition(0, 6);
+                Console.SetCursorPosition(0, 3);
+                CreateCenterLine(menuWidth);
+                CreateCenterText(menuWidth, "Main Menu");
+                CreateCenterLine(menuWidth);
                 CreateSpace(menuWidth);
                 for (int i = 0; i < Options.Length; i++)
                 {
@@ -117,10 +116,6 @@ namespace fancy_text
                         CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i], 8);
                     }
                 }
-                CreateSpace(menuWidth);
-                CreateSpace(menuWidth);
-                CreateSpace(menuWidth);
-                CreateCenterLine(menuWidth);
 
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
@@ -138,20 +133,24 @@ namespace fancy_text
                     if(optionSelector == Options.Length - 5)
                     {
                         ChangeColorScheme();
+                        ClearRest();
                     }
                     if(optionSelector == Options.Length - 4)
                     {
                         ChangeDirection();
+                        ClearRest();
                     }
                     if(optionSelector == Options.Length - 3)
                     {
                         Console.WriteLine("change delays");
                         Console.ReadKey();
+                        ClearRest();
                     }
                     if(optionSelector == Options.Length - 2)
                     {
                         Console.WriteLine("change background");
                         Console.ReadKey();
+                        ClearRest();
                     }
                     if (optionSelector == Options.Length - 1)
                     {
@@ -160,9 +159,9 @@ namespace fancy_text
                 }
             }
         }
-        //menus
         static void ChangeColorScheme()
         {
+            ClearRest();
             string[] options = { "One Color", "Deafult Color: ", "Color: ", "Multi Color", "Color #1: ", "Add", "Back" };
             int optionSelector = 0;
 
@@ -256,8 +255,6 @@ namespace fancy_text
                         }
                     }
                 }
-                CreateSpace(menuWidth);
-                CreateCenterLine(menuWidth);
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
 
@@ -288,51 +285,82 @@ namespace fancy_text
         }
         static void ChangeDirection()
         {
+            ClearRest();
             string[] options = { "From Left To Right", "From Right To Left", "Back" };
             int optionSelector = 0;
 
-            while(true)
+            while (true)
             {
                 Console.SetCursorPosition(0, 3);
                 CreateCenterLine(menuWidth);
-                CreateCenterText(menuWidth, "Color Scheme Direction");
+                CreateCenterText(menuWidth, "Direction");
                 CreateCenterLine(menuWidth);
                 CreateSpace(menuWidth);
 
-                if(LeftToRight)
+                for(int i = 0; i < options.Length; i++)
                 {
-                    if(optionSelector == 0 && optionSelector != 2)
+                    if(i == 0)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[*] " + options[0] + " - SELECTED", 8);
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[1], 8);
+                        if (LeftToRight)
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + " - SELECTED", 8);
+                            }
+                        }
+                        else
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
+                            }
+                        }
                     }
-                    else
+                    if(i == 1)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[0] + " - SELECTED", 8);
-                        CreateCenterFarLeftText(menuWidth, "[*] " + options[1], 8);
+                        if (!LeftToRight)
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + " - SELECTED", 8);
+                            }
+                        }
+                        else
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
+                            }
+                        }
                     }
-                }
-                else
-                {
-                    if (optionSelector == 0 && optionSelector != 2)
+                    if(i == 2)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[*] " + options[0], 8);
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[1] + " - SELECTED", 8);
+                        CreateSpace(menuWidth);
+                        if (optionSelector == i)
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[*] " + options[2], 8);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + options[2], 8);
+                        }
                     }
-                    else
-                    {
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[0], 8);
-                        CreateCenterFarLeftText(menuWidth, "[*] " + options[1] + " - SELECTED", 8);
-                    }
-                }
-                CreateSpace(menuWidth);
-                if(optionSelector == 2)
-                {
-                    CreateCenterFarLeftText(menuWidth, "[*] " + options[2], 8);
-                }
-                else
-                {
-                    CreateCenterFarLeftText(menuWidth, "[ ] " + options[2], 8);
                 }
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
@@ -355,6 +383,10 @@ namespace fancy_text
                     {
                         LeftToRight = false;
                     }
+                    if(optionSelector == 2)
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -367,6 +399,14 @@ namespace fancy_text
         }
 
         //text
+        static void ClearRest()
+        {
+            Console.SetCursorPosition(0, 3);
+            for(int i = 0; i < Console.WindowHeight - 4; i++)
+            {
+                Console.WriteLine(new String(' ', Console.WindowWidth));
+            }
+        }
         static void CreateCenterLine(int width)
         {
             CenterText("!"+new string('-', width)+"!");
@@ -376,11 +416,11 @@ namespace fancy_text
             width = (width - text.Length) / 2;
             if(width % 2 == 0)
             {
-                CenterText("!" + "".PadRight(width, ' ') + text + "".PadRight(width, ' ') + "!");
+                CenterText("!"+"".PadLeft(width, ' ') + text + "".PadRight(width, ' ')+"!");
             }
             else
             {
-                CenterText("!" + "".PadRight(width, ' ') + text + "".PadRight(width + 1, ' ') + "!");
+                CenterText("!"+"".PadLeft(width, ' ') + text + "".PadRight(width+1, ' ')+"!");
             }
         }
         static void CreateCenterFarLeftText(int width, string text, int padding)
@@ -388,7 +428,7 @@ namespace fancy_text
             int leftOffset = padding;
             int remaningSpace = width - leftOffset - text.Length;
 
-            CenterText("!" + "".PadRight(leftOffset, ' ') + text + "".PadRight(remaningSpace, ' ') + "!");
+            CenterText("!"+"".PadRight(leftOffset, ' ') + text + "".PadRight(remaningSpace, ' ')+"!");
         }
         static void CreateSpace(int width)
         {
