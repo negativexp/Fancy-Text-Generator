@@ -6,8 +6,9 @@ namespace fancy_text
     class Program
     {
         static int menuWidth = 80;
-
         static bool OneColor = false;
+        static ConsoleColor[] multiColors = { ConsoleColor.Red };
+        static bool LeftToRight = true;
 
         static void Main(string[] args)
         {
@@ -140,8 +141,7 @@ namespace fancy_text
                     }
                     if(optionSelector == Options.Length - 4)
                     {
-                        Console.WriteLine("change diraction");
-                        Console.ReadKey();
+                        ChangeDirection();
                     }
                     if(optionSelector == Options.Length - 3)
                     {
@@ -163,14 +163,14 @@ namespace fancy_text
         //menus
         static void ChangeColorScheme()
         {
-            string[] options = { "One Color", "Deafult Color", "Color", "Multi Color", "Color #1", "Add", "Back" };
+            string[] options = { "One Color", "Deafult Color: ", "Color: ", "Multi Color", "Color #1: ", "Add", "Back" };
             int optionSelector = 0;
 
             while (true)
             {
                 Console.SetCursorPosition(0, 3);
                 CreateCenterLine(menuWidth);
-                CreateCenterText(menuWidth, "color scheme");
+                CreateCenterText(menuWidth, "Color Scheme");
                 CreateCenterLine(menuWidth);
                 CreateSpace(menuWidth);
 
@@ -282,6 +282,78 @@ namespace fancy_text
                     if(optionSelector == 3)
                     {
                         OneColor = false;
+                    }
+                }
+            }
+        }
+        static void ChangeDirection()
+        {
+            string[] options = { "From Left To Right", "From Right To Left", "Back" };
+            int optionSelector = 0;
+
+            while(true)
+            {
+                Console.SetCursorPosition(0, 3);
+                CreateCenterLine(menuWidth);
+                CreateCenterText(menuWidth, "Color Scheme Direction");
+                CreateCenterLine(menuWidth);
+                CreateSpace(menuWidth);
+
+                if(LeftToRight)
+                {
+                    if(optionSelector == 0 && optionSelector != 2)
+                    {
+                        CreateCenterFarLeftText(menuWidth, "[*] " + options[0] + " - SELECTED", 8);
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[1], 8);
+                    }
+                    else
+                    {
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[0] + " - SELECTED", 8);
+                        CreateCenterFarLeftText(menuWidth, "[*] " + options[1], 8);
+                    }
+                }
+                else
+                {
+                    if (optionSelector == 0 && optionSelector != 2)
+                    {
+                        CreateCenterFarLeftText(menuWidth, "[*] " + options[0], 8);
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[1] + " - SELECTED", 8);
+                    }
+                    else
+                    {
+                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[0], 8);
+                        CreateCenterFarLeftText(menuWidth, "[*] " + options[1] + " - SELECTED", 8);
+                    }
+                }
+                CreateSpace(menuWidth);
+                if(optionSelector == 2)
+                {
+                    CreateCenterFarLeftText(menuWidth, "[*] " + options[2], 8);
+                }
+                else
+                {
+                    CreateCenterFarLeftText(menuWidth, "[ ] " + options[2], 8);
+                }
+
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+
+                if (pressedKey.Key == ConsoleKey.UpArrow && optionSelector != 0)
+                {
+                    optionSelector--;
+                }
+                if (pressedKey.Key == ConsoleKey.DownArrow && optionSelector != options.Length - 1)
+                {
+                    optionSelector++;
+                }
+                if(pressedKey.Key == ConsoleKey.Enter)
+                {
+                    if(optionSelector == 0)
+                    {
+                        LeftToRight = true;
+                    }
+                    if(optionSelector == 1)
+                    {
+                        LeftToRight = false;
                     }
                 }
             }
