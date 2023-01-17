@@ -389,11 +389,10 @@ namespace fancy_text
         {
             ClearRest();
             List<string> options = new List<string>();
-            for (int i = 0; i < multiColors.Count; i++)
+            for(int i = 0; i < multiColors.Count; i++)
             {
-                options.Add("Color #" + i + ": ");
+                options.Add("Color #" + i + ": " + multiColors[i]);
             }
-            options.Add("Remove");
             options.Add("Add");
             options.Add("Back");
 
@@ -405,6 +404,7 @@ namespace fancy_text
                 Console.SetCursorPosition(0, 3);
                 CreateCenterLine(menuWidth);
                 CreateCenterText(menuWidth, "Multi Color Options ");
+                CreateCenterText(menuWidth, " Press \"del\" to delete.");
                 CreateCenterLine(menuWidth);
                 CreateSpace(menuWidth);
 
@@ -412,13 +412,13 @@ namespace fancy_text
                 {
                     if(i < multiColors.Count)
                     {
-                        if(i == optionSelector)
+                        if (optionSelector == i)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] "+options[i]+multiColors[i].ToString(), 8);
+                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
                         }
                         else
                         {
-                            CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + multiColors[i].ToString(), 8);
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
                         }
                     }
                     else
@@ -426,7 +426,7 @@ namespace fancy_text
                         if(i == options.Count - 1)
                         {
                             CreateSpace(menuWidth);
-                            if (i == optionSelector)
+                            if (optionSelector == i)
                             {
                                 CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
                             }
@@ -437,45 +437,17 @@ namespace fancy_text
                         }
                         else
                         {
-                            if(i == options.Count- 3)
+                            if (optionSelector == i)
                             {
-                                if(removeBool)
-                                {
-                                    if (i == optionSelector)
-                                    {
-                                        CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
-                                    }
-                                    else
-                                    {
-                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + " - SELECTED", 8);
-                                    }
-                                }
-                                else
-                                {
-                                    if (i == optionSelector)
-                                    {
-                                        CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
-                                    }
-                                    else
-                                    {
-                                        CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
-                                    }
-                                }
-
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
                             }
                             else
                             {
-                                if (i == optionSelector)
-                                {
-                                    CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
-                                }
-                                else
-                                {
-                                    CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
-                                }
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
                             }
                         }
                     }
+
                 }
 
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
@@ -490,34 +462,6 @@ namespace fancy_text
                 }
                 if (pressedKey.Key == ConsoleKey.Enter)
                 {
-                    for(int i = 0; i < multiColors.Count; i++)
-                    {
-                        if(removeBool)
-                        {
-                            if(i == optionSelector)
-                            {
-                                options.RemoveRange(0, multiColors.Count);
-                                multiColors.RemoveAt(i);
-                                for (int j = 0; j < multiColors.Count; j++)
-                                {
-                                    options.Insert(j,"Color #" + j + ": ");
-                                }   
-                            }
-                            ClearRest();
-                        }
-                    }
-                    if(optionSelector == options.Count - 3)
-                    {
-                        //remove
-                        if (removeBool)
-                        {
-                            removeBool = false;
-                        }
-                        else
-                        {
-                            removeBool = true;
-                        }
-                    }
                     if(optionSelector == options.Count - 2)
                     {
                         //add
@@ -525,12 +469,25 @@ namespace fancy_text
                         if (value != null)
                         {
                             multiColors.Add((ConsoleColor)value);
-                            options.Insert(multiColors.Count - 1, "Color #" + multiColors.Count + ": ");
+                            options.Insert(multiColors.Count - 1, "Color #" + multiColors.Count + ": " + value);
                         }
                     }
                     if (optionSelector == options.Count - 1)
                     {
                         break;
+                    }
+                }
+                if(pressedKey.Key == ConsoleKey.Delete)
+                {
+                    if(optionSelector < multiColors.Count)
+                    {
+                        options.RemoveRange(0, multiColors.Count);
+                        multiColors.RemoveAt(optionSelector);
+                        for (int i = 0; i < multiColors.Count; i++)
+                        {
+                            options.Insert(i, "Color #" + i + ": " + multiColors[i]);
+                        }
+                        ClearRest();
                     }
                 }
             }
