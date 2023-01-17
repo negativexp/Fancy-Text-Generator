@@ -8,9 +8,12 @@ namespace fancy_text
     class Program
     {
         static int menuWidth = 80;
+        static string Text = "Hello World";
         static bool OneColor = true;
         static List<ConsoleColor> oneColor = new List<ConsoleColor>() { ConsoleColor.White, ConsoleColor.Red };
         static List<ConsoleColor> multiColors = new List<ConsoleColor>() { ConsoleColor.Red, ConsoleColor.DarkGreen, ConsoleColor.DarkRed };
+        static int StartDelay = 250;
+        static int ColorSchemeDelay = 50;
         static bool LeftToRight = true;
 
         static void Main(string[] args)
@@ -88,10 +91,12 @@ namespace fancy_text
 
             string[] Options =
             {
+                    "Text: ",
                     "Change Color scheme",
                     "Change Direction",
                     "Change Delays",
                     "Change Background",
+                    "Start",
                     "Exit"
             };
 
@@ -111,13 +116,27 @@ namespace fancy_text
                     {
                         CreateSpace(menuWidth);
                     }
-                    if (i == optionSelector)
+                    if(i == 0)
                     {
-                        CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i], 8);
+                        if (i == optionSelector)
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i] + Text, 8);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i] + Text, 8);
+                        }
                     }
                     else
                     {
-                        CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i], 8);
+                        if (i == optionSelector)
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + Options[i], 8);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + Options[i], 8);
+                        }
                     }
                 }
 
@@ -134,27 +153,38 @@ namespace fancy_text
                 }
                 if(pressedKey.Key == ConsoleKey.Enter)
                 {
-                    if(optionSelector == Options.Length - 5)
+                    if(optionSelector == 0)
+                    {
+                        string? value = TypeString();
+                        if(value != null)
+                        {
+                            Text = (string)value;
+                        }
+                    }
+                    if(optionSelector == 1)
                     {
                         ChangeColorScheme();
                         ClearRest();
                     }
-                    if(optionSelector == Options.Length - 4)
+                    if(optionSelector == 2)
                     {
                         ChangeDirection();
                         ClearRest();
                     }
-                    if(optionSelector == Options.Length - 3)
+                    if(optionSelector == 3)
                     {
-                        Console.WriteLine("change delays");
-                        Console.ReadKey();
+                        ChangeDelays();
                         ClearRest();
                     }
-                    if(optionSelector == Options.Length - 2)
+                    if(optionSelector == 4)
                     {
                         Console.WriteLine("change background");
                         Console.ReadKey();
                         ClearRest();
+                    }
+                    if(optionSelector == 5)
+                    {
+                        Start();
                     }
                     if (optionSelector == Options.Length - 1)
                     {
@@ -462,6 +492,15 @@ namespace fancy_text
                 }
                 if (pressedKey.Key == ConsoleKey.Enter)
                 {
+                    if(optionSelector < multiColors.Count)
+                    {
+                        ConsoleColor? value = TypeConsoleColor();
+                        if (value != null)
+                        {
+                            multiColors[optionSelector] = (ConsoleColor)value;
+                            options[optionSelector] = "Color #" + optionSelector + ": " + multiColors[optionSelector];
+                        }
+                    }
                     if(optionSelector == options.Count - 2)
                     {
                         //add
@@ -602,12 +641,92 @@ namespace fancy_text
         static void ChangeDelays()
         {
             ClearRest();
-            string[] options = { "Start Delay: ", "End Delay: ", "Color Scheme Delay: ", "Back" };
+            string[] options = { "Start Delay: ", "Color Scheme Delay: ", "Back" };
             int optionSelector = 0;
 
-            while(true)
+            while (true)
             {
+                Console.SetCursorPosition(0, 3);
+                CreateCenterLine(menuWidth);
+                CreateCenterText(menuWidth, "Delays");
+                CreateCenterLine(menuWidth);
+                CreateSpace(menuWidth);
 
+
+                for (int i = 0; i < options.Length; i++)
+                {
+                    if(i != options.Length - 1)
+                    {
+                        if(i == 0)
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + StartDelay + "ms", 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + StartDelay + "ms", 8);
+                            }
+                        }
+                        if(i == 1)
+                        {
+                            if (optionSelector == i)
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + ColorSchemeDelay + "ms", 8);
+                            }
+                            else
+                            {
+                                CreateCenterFarLeftText(menuWidth, "[ ] " + options[i] + ColorSchemeDelay + "ms", 8);
+                            }
+                        }    
+                    }
+                    else
+                    {
+                        CreateSpace(menuWidth);
+                        if (optionSelector == i)
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                        }
+                        else
+                        {
+                            CreateCenterFarLeftText(menuWidth, "[ ] " + options[i], 8);
+                        }
+                    }
+                }
+
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+
+                if (pressedKey.Key == ConsoleKey.UpArrow && optionSelector != 0)
+                {
+                    optionSelector--;
+                }
+                if (pressedKey.Key == ConsoleKey.DownArrow && optionSelector != options.Length - 1)
+                {
+                    optionSelector++;
+                }
+                if (pressedKey.Key == ConsoleKey.Enter)
+                {
+                    if(optionSelector == 0)
+                    {
+                        int? delay = TypeInt();
+                        if(delay != null)
+                        {
+                            StartDelay = (int)delay;
+                        }
+                    }
+                    if(optionSelector == 1)
+                    {
+                        int? delay = TypeInt();
+                        if (delay != null)
+                        {
+                            ColorSchemeDelay = (int)delay;
+                        }
+                    }
+                    if(optionSelector == options.Length - 1)
+                    {
+                        break;
+                    }
+                }
             }
         }
         static void Exit()
@@ -616,6 +735,59 @@ namespace fancy_text
             CenterText("My github: https://github.com/negativexp");
             Thread.Sleep(3000);
             Environment.Exit(0);
+        }
+
+        //start
+        static void Start()
+        {
+            Console.Clear();
+
+            int[] colorIndexes = new int[Text.Length];
+            if(OneColor)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < Text.Length; i++)
+                {
+                    colorIndexes[Text.Length - i - 1] = i % multiColors.Count - 1;
+                }
+            }
+
+            while(true)
+            {
+                Console.CursorLeft = 0;
+                Console.CursorTop = 0;
+
+                for (int i = 0; i < Text.Length; i++)
+                {
+                    Console.ForegroundColor = multiColors[colorIndexes[i]];
+                    Console.Write(Text[i]);
+                }
+
+                if(OneColor)
+                {
+
+                }
+                else
+                {
+                    for (int i = 0; i < colorIndexes.Length; i++)
+                    {
+                        if (colorIndexes[i] == multiColors.Count - 1)
+                        {
+                            colorIndexes[i] = 0;
+                        }
+                        else
+                        {
+                            colorIndexes[i]++;
+                        }
+                    }
+                }
+
+                Thread.Sleep(ColorSchemeDelay);
+            }
+
         }
 
         //text
@@ -740,6 +912,34 @@ namespace fancy_text
             {
                 return null;
             }
+        }
+        static int? TypeInt()
+        {
+            Console.CursorLeft = 28;
+            Console.Write(":");
+            string value = Console.ReadLine();
+            Console.CursorTop = Console.CursorTop - 1;
+            Console.CursorLeft = 28;
+            Console.Write(new string(' ', 50));
+
+            try
+            {
+                return int.Parse(value);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        static string? TypeString()
+        {
+            Console.CursorLeft = 28;
+            Console.Write(":");
+            string value = Console.ReadLine();
+            Console.CursorTop = Console.CursorTop - 1;
+            Console.CursorLeft = 28;
+            Console.Write(new string(' ', 50));
+            return value;
         }
     }
 }
