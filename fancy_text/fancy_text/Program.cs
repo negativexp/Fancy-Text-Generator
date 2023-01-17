@@ -185,7 +185,7 @@ namespace fancy_text
                             {
                                 if (optionSelector == i)
                                 {
-                                    CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                                    CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + " - SELECTED", 8);
                                 }
                                 else
                                 {
@@ -196,7 +196,7 @@ namespace fancy_text
                             {
                                 if (optionSelector == i)
                                 {
-                                    CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                    CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                                 }
                                 else
                                 {
@@ -210,7 +210,7 @@ namespace fancy_text
                             {
                                 if (optionSelector == i)
                                 {
-                                    CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                                    CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + " - SELECTED", 8);
                                 }
                                 else
                                 {
@@ -221,7 +221,7 @@ namespace fancy_text
                             {
                                 if (optionSelector == i)
                                 {
-                                    CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                    CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                                 }
                                 else
                                 {
@@ -233,7 +233,7 @@ namespace fancy_text
                         {
                             if (optionSelector == i)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                             }
                             else
                             {
@@ -247,7 +247,7 @@ namespace fancy_text
 
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                         }
                         else
                         {
@@ -316,7 +316,7 @@ namespace fancy_text
                     {
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + oneColor[0], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + oneColor[0], 8);
                         }
                         else
                         {
@@ -327,7 +327,7 @@ namespace fancy_text
                     {
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + oneColor[1], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + oneColor[1], 8);
                         }
                         else
                         {
@@ -339,7 +339,7 @@ namespace fancy_text
                         CreateSpace(menuWidth);
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                         }
                         else
                         {
@@ -392,6 +392,7 @@ namespace fancy_text
                 options.Add("Color #" + i + ": ");
             }
             options.Add("Add");
+            options.Add("Remove");
             options.Add("Back");
             int optionSelector = 0;
 
@@ -405,13 +406,13 @@ namespace fancy_text
 
                 for (int i = 0; i < options.Count; i++)
                 {
-                    if (i != options.Count - 1)
+                    if (i != options.Count - 2)
                     {
-                        if (i != options.Count - 2)
+                        if (i != options.Count - 3)
                         {
                             if (i == optionSelector)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + multiColors[i], 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + multiColors[i], 8);
                             }
                             else
                             {
@@ -422,7 +423,7 @@ namespace fancy_text
                         {
                             if (i == optionSelector)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                             }
                             else
                             {
@@ -435,7 +436,7 @@ namespace fancy_text
                         CreateSpace(menuWidth);
                         if (i == optionSelector)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                         }
                         else
                         {
@@ -494,7 +495,7 @@ namespace fancy_text
                         {
                             if (optionSelector == i)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + " - SELECTED", 8);
                             }
                             else
                             {
@@ -505,7 +506,7 @@ namespace fancy_text
                         {
                             if (optionSelector == i)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                             }
                             else
                             {
@@ -519,7 +520,7 @@ namespace fancy_text
                         {
                             if (optionSelector == i)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i] + " - SELECTED", 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i] + " - SELECTED", 8);
                             }
                             else
                             {
@@ -530,7 +531,7 @@ namespace fancy_text
                         {
                             if (optionSelector == i)
                             {
-                                CreateCenterFarLeftText(menuWidth, "[*] " + options[i], 8);
+                                CreateCenterFarLeftText(menuWidth, "[*]  " + options[i], 8);
                             }
                             else
                             {
@@ -543,7 +544,7 @@ namespace fancy_text
                         CreateSpace(menuWidth);
                         if (optionSelector == i)
                         {
-                            CreateCenterFarLeftText(menuWidth, "[*] " + options[2], 8);
+                            CreateCenterFarLeftText(menuWidth, "[*]  " + options[2], 8);
                         }
                         else
                         {
@@ -577,6 +578,17 @@ namespace fancy_text
                         break;
                     }
                 }
+            }
+        }
+        static void ChangeDelays()
+        {
+            ClearRest();
+            string[] options = { "Start Delay: ", "End Delay: ", "Color Scheme Delay: ", "Back" };
+            int optionSelector = 0;
+
+            while(true)
+            {
+
             }
         }
         static void Exit()
