@@ -1,4 +1,5 @@
-﻿using System.Net.Security;
+﻿using System.Globalization;
+using System.Net.Security;
 using System.Reflection.Metadata;
 using System.Threading;
 using System.Transactions;
@@ -21,6 +22,7 @@ namespace fancy_text
             Console.Title = "FTG - by newoutsider <3";
             //PlayIntro();
             DisplayMenu();
+            //Start();
         }
 
         //intro
@@ -742,52 +744,88 @@ namespace fancy_text
         {
             Console.Clear();
 
-            int[] colorIndexes = new int[Text.Length];
-            if(OneColor)
+            int[] array = { 0, 0, 0, 0 };
+
+            if(LeftToRight)
             {
-
-            }
-            else
-            {
-                for (int i = 0; i < Text.Length; i++)
-                {
-                    colorIndexes[Text.Length - i - 1] = i % multiColors.Count - 1;
-                }
-            }
-
-            while(true)
-            {
-                Console.CursorLeft = 0;
-                Console.CursorTop = 0;
-
-                for (int i = 0; i < Text.Length; i++)
-                {
-                    Console.ForegroundColor = multiColors[colorIndexes[i]];
-                    Console.Write(Text[i]);
-                }
-
                 if(OneColor)
                 {
-
-                }
-                else
-                {
-                    for (int i = 0; i < colorIndexes.Length; i++)
+                    //left to right
+                    while (true)
                     {
-                        if (colorIndexes[i] == multiColors.Count - 1)
+                        for (int i = 0; i < Text.Length + 1; i++)
                         {
-                            colorIndexes[i] = 0;
-                        }
-                        else
-                        {
-                            colorIndexes[i]++;
+                            Console.SetCursorPosition(0, 0);
+                            for (int j = 0; j < Text.Length; j++)
+                            {
+                                if (i == j)
+                                {
+                                    //color
+                                    Console.ForegroundColor = oneColor[1];
+                                }
+                                else
+                                {
+                                    //reset
+                                    Console.ForegroundColor = oneColor[0];
+                                }
+                                Console.Write(Text[j]);
+                                Thread.Sleep(10);
+                            }
                         }
                     }
                 }
-
-                Thread.Sleep(ColorSchemeDelay);
+                
+            }
+            else
+            {
+                //right to left
+                while (true)
+                {
+                    for (int i = array.Length; i >= 0; i--)
+                    {
+                        Console.SetCursorPosition(0, 0);
+                        for (int j = 0; j < Text.Length; j++)
+                        {
+                            if (i == j)
+                            {
+                                //color
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                //array[j] = 1;
+                            }
+                            else
+                            {
+                                //reset
+                                Console.ResetColor();
+                                //array[j] = 0;
+                            }
+                            Console.Write(Text[j]);
+                            Thread.Sleep(10);
+                        }
+                    }
+                }
             }
 
+            //right to left
+            //while(true)
+            //{
+            //    for (int i = array.Length; i >= 0; i--)
+            //    {
+            //        Console.SetCursorPosition(0, 0);
+            //        for (int j = 0; j < array.Length; j++)
+            //        {
+            //            if(i == j)
+            //            {
+            //                array[j] = 1;
+            //            }
+            //            else
+            //            {
+            //                array[j] = 0;
+            //            }
+            //        }
+            //        Console.WriteLine(string.Join(", ", array));
+            //        Console.ReadLine();
+            //    }
+            //}
         }
 
         //text
