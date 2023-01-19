@@ -1,10 +1,6 @@
-﻿using System.Globalization;
-using System.Net.Security;
-using System.Reflection.Metadata;
-using System.Threading;
-using System.Transactions;
+﻿using System.Threading;
 
-namespace fancy_text
+namespace FTG
 {
     class Program
     {
@@ -32,7 +28,6 @@ namespace fancy_text
             int textDelay = 250;
             string introTitle = "Fancy Text Generator";
             string introAuthor = "Made by newoutsider <3";
-            int introWidth = 50;
             string[] introDescription =
                                {"!------------------------------------------------!",
                                 "!                     Note                       !",
@@ -427,7 +422,6 @@ namespace fancy_text
             options.Add("Add");
             options.Add("Back");
 
-            bool removeBool = false;
             int optionSelector = 0;
 
             while (true)
@@ -966,7 +960,7 @@ namespace fancy_text
             {
                 return int.Parse(value);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

@@ -1,7 +1,8 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {},
+    "net6.0/win-x64": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
@@ -14,9 +15,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\fancy_text.csproj",
-      "projectName": "fancy_text",
-      "projectPath": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\fancy_text.csproj",
+      "projectUniqueName": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\FTG.csproj",
+      "projectName": "FTG",
+      "projectPath": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\FTG.csproj",
       "packagesPath": "C:\\Users\\matyas.schuller\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\obj\\",
       "projectStyle": "PackageReference",
@@ -61,12 +62,31 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+            "version": "[6.0.12, 6.0.12]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.win-x64",
+            "version": "[6.0.12, 6.0.12]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+            "version": "[6.0.12, 6.0.12]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "win-x64": {
+        "#import": []
       }
     }
   }

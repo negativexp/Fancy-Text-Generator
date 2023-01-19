@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "EXeiS1BNSSDjzJZ1lAGrSJ/VW9+KhXLqXlmvLWIW6BkH8QoZDzXV6/nyyOfij2UQrfanhA4thCmnTrtxfUEF0A==",
+  "dgSpecHash": "cNQHw4gsXqpysy/q5jW63TOsSjfxdhytEVK7fKkSLhuf1r12v4u6qkMKL3koPLjY1edvGU5vfNqzMRlxwSrZcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\fancy_text.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\matyas.schuller\\Documents\\GitHub\\Fancy-Text-Generator\\fancy_text\\fancy_text\\FTG.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\matyas.schuller\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.12\\microsoft.netcore.app.runtime.win-x64.6.0.12.nupkg.sha512",
+    "C:\\Users\\matyas.schuller\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.12\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.12.nupkg.sha512",
+    "C:\\Users\\matyas.schuller\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.12\\microsoft.aspnetcore.app.runtime.win-x64.6.0.12.nupkg.sha512"
+  ],
   "logs": []
 }
