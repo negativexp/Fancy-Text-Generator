@@ -22,7 +22,6 @@ namespace fancy_text
             Console.Title = "FTG - by newoutsider <3";
             //PlayIntro();
             DisplayMenu();
-            //Start();
         }
 
         //intro
@@ -739,10 +738,22 @@ namespace fancy_text
             Environment.Exit(0);
         }
 
-        //start
+        //start        
         static void Start()
         {
             Console.Clear();
+
+            Console.SetCursorPosition((Console.WindowWidth / 2) - Text.Length, (Console.WindowHeight / 2) - 1);
+
+            int[] colorIndexes = new int[Text.Length];
+
+            if (!OneColor)
+            {
+                for (int i = 0; i < colorIndexes.Length; i++)
+                {
+                    colorIndexes[i] = i % multiColors.Count;
+                }
+            }
 
             while (!Console.KeyAvailable)
             {
@@ -752,7 +763,7 @@ namespace fancy_text
                     {
                         for (int i = 0; i < Text.Length + 1; i++)
                         {
-                            Console.SetCursorPosition(0, 0);
+                            Console.SetCursorPosition((Console.WindowWidth / 2) - Text.Length, (Console.WindowHeight / 2) - 1);
                             for (int j = 0; j < Text.Length; j++)
                             {
                                 if (i == j)
@@ -770,11 +781,21 @@ namespace fancy_text
                     }
                     else
                     {
-                        int[] colorIndexes = new int[multiColors.Count];
-                        for(int i = 0; i < colorIndexes.Length; i++)
+                        Console.SetCursorPosition((Console.WindowWidth / 2) - Text.Length, (Console.WindowHeight / 2) - 1);
+                        for (int i = 0; i < Text.Length; i++)
                         {
-                            colorIndexes[i] = 
+                            if (colorIndexes[i] != multiColors.Count - 1)
+                            {
+                                colorIndexes[i]++;
+                            }
+                            else
+                            {
+                                colorIndexes[i] = 0;
+                            }
+                            Console.ForegroundColor = multiColors[colorIndexes[i]];
+                            Console.Write(Text[i]);
                         }
+                        Thread.Sleep(ColorSchemeDelay);
                     }
                 }
                 else
@@ -783,7 +804,7 @@ namespace fancy_text
                     {
                         for (int i = Text.Length; i >= 0; i--)
                         {
-                            Console.SetCursorPosition(0, 0);
+                            Console.SetCursorPosition((Console.WindowWidth / 2) - Text.Length, (Console.WindowHeight / 2) - 1);
                             for (int j = 0; j < Text.Length; j++)
                             {
                                 if (i == j)
@@ -801,7 +822,8 @@ namespace fancy_text
                     }
                     else
                     {
-
+                        Console.WriteLine("yeah im workin on it");
+                        Thread.Sleep(ColorSchemeDelay);
                     }
                 } 
             }
