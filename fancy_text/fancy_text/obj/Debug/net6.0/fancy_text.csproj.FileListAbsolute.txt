@@ -28,3 +28,18 @@ C:\Users\matyas.schuller\Documents\GitHub\Fancy-Text-Generator\fancy_text\fancy_
 C:\Users\matyas.schuller\Documents\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.pdb
 C:\Users\matyas.schuller\Documents\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.genruntimeconfig.cache
 C:\Users\matyas.schuller\Documents\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\ref\fancy_text.dll
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\bin\Debug\net6.0\fancy_text.exe
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\bin\Debug\net6.0\fancy_text.deps.json
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\bin\Debug\net6.0\fancy_text.runtimeconfig.json
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\bin\Debug\net6.0\fancy_text.dll
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\bin\Debug\net6.0\fancy_text.pdb
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.csproj.AssemblyReference.cache
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.AssemblyInfoInputs.cache
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.AssemblyInfo.cs
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.csproj.CoreCompileInputs.cache
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.dll
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\refint\fancy_text.dll
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.pdb
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\fancy_text.genruntimeconfig.cache
+C:\Users\matyas.schuller\OneDrive - Střední škola EDUCHEM, a.s\Dokumenty\GitHub\Fancy-Text-Generator\fancy_text\fancy_text\obj\Debug\net6.0\ref\fancy_text.dll

@@ -14,7 +14,7 @@ namespace fancy_text
         static List<ConsoleColor> oneColor = new List<ConsoleColor>() { ConsoleColor.White, ConsoleColor.Red };
         static List<ConsoleColor> multiColors = new List<ConsoleColor>() { ConsoleColor.Red, ConsoleColor.DarkGreen, ConsoleColor.DarkRed };
         static int StartDelay = 250;
-        static int ColorSchemeDelay = 50;
+        static int ColorSchemeDelay = 100;
         static bool LeftToRight = true;
 
         static void Main(string[] args)
@@ -744,14 +744,11 @@ namespace fancy_text
         {
             Console.Clear();
 
-            int[] array = { 0, 0, 0, 0 };
-
-            if(LeftToRight)
+            while (!Console.KeyAvailable)
             {
-                if(OneColor)
+                if (LeftToRight)
                 {
-                    //left to right
-                    while (true)
+                    if (OneColor)
                     {
                         for (int i = 0; i < Text.Length + 1; i++)
                         {
@@ -760,72 +757,55 @@ namespace fancy_text
                             {
                                 if (i == j)
                                 {
-                                    //color
                                     Console.ForegroundColor = oneColor[1];
                                 }
                                 else
                                 {
-                                    //reset
                                     Console.ForegroundColor = oneColor[0];
                                 }
                                 Console.Write(Text[j]);
-                                Thread.Sleep(10);
                             }
+                            Thread.Sleep(ColorSchemeDelay);
                         }
                     }
-                }
-                
-            }
-            else
-            {
-                //right to left
-                while (true)
-                {
-                    for (int i = array.Length; i >= 0; i--)
+                    else
                     {
-                        Console.SetCursorPosition(0, 0);
-                        for (int j = 0; j < Text.Length; j++)
+                        int[] colorIndexes = new int[multiColors.Count];
+                        for(int i = 0; i < colorIndexes.Length; i++)
                         {
-                            if (i == j)
-                            {
-                                //color
-                                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                                //array[j] = 1;
-                            }
-                            else
-                            {
-                                //reset
-                                Console.ResetColor();
-                                //array[j] = 0;
-                            }
-                            Console.Write(Text[j]);
-                            Thread.Sleep(10);
+                            colorIndexes[i] = 
                         }
                     }
                 }
-            }
+                else
+                {
+                    if (OneColor)
+                    {
+                        for (int i = Text.Length; i >= 0; i--)
+                        {
+                            Console.SetCursorPosition(0, 0);
+                            for (int j = 0; j < Text.Length; j++)
+                            {
+                                if (i == j)
+                                {
+                                    Console.ForegroundColor = oneColor[1];
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = oneColor[0];
+                                }
+                                Console.Write(Text[j]);
+                            }
+                            Thread.Sleep(ColorSchemeDelay);
+                        }
+                    }
+                    else
+                    {
 
-            //right to left
-            //while(true)
-            //{
-            //    for (int i = array.Length; i >= 0; i--)
-            //    {
-            //        Console.SetCursorPosition(0, 0);
-            //        for (int j = 0; j < array.Length; j++)
-            //        {
-            //            if(i == j)
-            //            {
-            //                array[j] = 1;
-            //            }
-            //            else
-            //            {
-            //                array[j] = 0;
-            //            }
-            //        }
-            //        Console.WriteLine(string.Join(", ", array));
-            //        Console.ReadLine();
-            //    }
-            //}
+                    }
+                } 
+            }
+            Console.ResetColor();
         }
 
         //text
